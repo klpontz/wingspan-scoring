@@ -9,7 +9,7 @@ CREATE TABLE users (
     user_id INTEGER PRIMARY KEY AUTOINCREMENT,
     username VARCHAR(50) NOT NULL UNIQUE,
     email VARCHAR(100) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -76,7 +76,7 @@ CREATE TABLE elo_ratings (
 
 -- Indexes for faster queries
 CREATE INDEX idx_user_game_sessions_session_user ON user_game_sessions(session_id, user_id);
-CREATE INDEX idx_elo_ratings_user_game ON elo_ratings(user_id, game_name);
+CREATE INDEX idx_elo_ratings_user_session ON elo_ratings(user_id, session_id);
 CREATE INDEX idx_game_sessions_game ON game_sessions(game_name);
 CREATE INDEX idx_session_expansions_session_expansion ON session_expansions(session_id, expansion_id);
 ''')
