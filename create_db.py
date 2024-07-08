@@ -35,7 +35,7 @@ CREATE TABLE user_game_sessions (
     egg_points INTEGER NOT NULL,
     food_points INTEGER NOT NULL,
     tucked_points INTEGER NOT NULL,
-    nectar_points INTEGER NOT NULL,
+    nectar_points INTEGER,
     total_points INTEGER NOT NULL GENERATED ALWAYS AS (
         bird_points + bonus_points + end_of_round_points + egg_points + food_points + tucked_points + nectar_points
     ) STORED,
@@ -61,3 +61,6 @@ CREATE INDEX idx_user_game_sessions_session_user ON user_game_sessions(session_i
 CREATE INDEX idx_elo_ratings_user_game ON elo_ratings(user_id, game_id);
 CREATE INDEX idx_game_sessions_game ON game_sessions(game_id);
 ''')
+
+cur.close()
+conn.close()
